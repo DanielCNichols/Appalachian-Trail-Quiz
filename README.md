@@ -1,6 +1,6 @@
 # The Appalachian Trail Quiz
 
-Inspired by my own successful "thru-hike" of the Applachian Trail in 2013, this app tests the user on their knowledge of AT culture and folklore through ten multiple choice questions, ranking the user on their performance at the end. Do you have what it takes to make it to Maine?
+Inspired by my own successful "thru-hike" of the Appalachian Trail in 2013, this app tests the user on their knowledge of AT culture and folklore through ten multiple choice questions, ranking the user on their performance at the end. Do you have what it takes to make it to Maine?
 
 This project was completed in collaboration with my colleague, Shawn Collete as part of a pair-programming challenge to create an interactive app using JavasScript and jQuery.
 

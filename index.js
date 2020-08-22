@@ -1,14 +1,11 @@
-/* eslint-disable indent */
-/* eslint-disable no-console */
-/* eslint-disable no-undef */
-// eslint-disable-next-line quotes
-"use strict";
+'use strict';
 
 let questionNumber = 0;
 let score = 0;
+let error = null;
 
 function startQuiz() {
-  $("button").click(function() {
+  $('button').click(function() {
     generateQuestion(questionNumber);
     showScoreboard();
     displayScore(score);
@@ -21,11 +18,9 @@ function startQuiz() {
 function generateQuestion() {
   if (questionNumber < DATASTORE.length) {
     let question = `<div class="question-${questionNumber}">
-  <form class="answer-form">
+  <form class="answer-form" novalidate>
     <fieldset>
-
       <legend>${DATASTORE[questionNumber].question}</legend>
-
       <label class="answerOption">
         <input  type="radio" value="${
           DATASTORE[questionNumber].answers[0]
@@ -54,6 +49,7 @@ function generateQuestion() {
                 <span>${DATASTORE[questionNumber].answers[3]}</span>
   </label>
 
+  <div class="error" aria-live="assertive"></div>
   <button type="submit" class="submitButton">Submit</button>
 
   </fieldset>
@@ -68,15 +64,32 @@ function generateQuestion() {
 }
 
 function displayQuestion(question) {
-  console.log("displaying the question!");
-  $(".quiz-display").append(`${question}`);
+  $('.quiz-display').append(`${question}`);
+}
+
+function displayError() {
+  $('.error').append(error);
+}
+
+function clearError() {
+  error = null;
 }
 
 function submitQuestion() {
-  $(".answer-form").submit(function(event) {
+  $('.answer-form').submit(function(event) {
     event.preventDefault();
-    let userInput = $("input:checked");
+    let userInput = $('input:checked');
     let selection = userInput.val();
+    if (!selection) {
+      if (!error) {
+        error = 'Please make a selection';
+        displayError();
+        return;
+      } else {
+        return;
+      }
+    }
+    clearError();
     clearDisplay();
     checkQuestion(selection);
   });
@@ -91,7 +104,7 @@ function checkQuestion(userInput) {
 function generateFeedback(feedbk) {
   if (feedbk === true) {
     scoreUpdate();
-    $(".quiz-display").append(`<header>
+    $('.quiz-display').append(`<header>
     <h2>That is correct!</h2>
   </header>
   <div class="quiz-text">
@@ -100,7 +113,7 @@ function generateFeedback(feedbk) {
   <button class= "next">Next</button>`);
   }
   if (feedbk === false) {
-    $(".quiz-display").append(`<header>
+    $('.quiz-display').append(`<header>
     <h2>That is incorrect!</h2>
   </header>
   <div class="quiz-text">
@@ -113,7 +126,7 @@ function generateFeedback(feedbk) {
 }
 
 function nextQuestion() {
-  $(".next").click(function() {
+  $('.next').click(function() {
     if (questionNumber < DATASTORE.length - 1) {
       questionUpdate();
       displayQuestionCount();
@@ -132,7 +145,7 @@ function questionUpdate() {
 }
 
 function displayQuestionCount() {
-  $("#question").text(`Question: ${questionNumber + 1} / 10`);
+  $('#question').text(`Question: ${questionNumber + 1} / 10`);
 }
 
 function scoreUpdate() {
@@ -141,12 +154,12 @@ function scoreUpdate() {
 }
 
 function displayScore() {
-  $("#score").text(` Score: ${score}`);
+  $('#score').text(` Score: ${score}`);
 }
 
 function generateResult() {
   if (score >= 8) {
-    $(".quiz-display").append(`<header>
+    $('.quiz-display').append(`<header>
     <h2>${resultsMessage.winHead}</h2>
   </header><div class="quiz-text"><p>${resultsMessage.winText}</p>
     <button class="reset-button">Play Again</button>
@@ -154,7 +167,7 @@ function generateResult() {
   }
 
   if (score < 8 && score >= 4) {
-    $(".quiz-display").append(`<header>
+    $('.quiz-display').append(`<header>
     <h2>${resultsMessage.midHead}</h2>
   </header>
   <div class="quiz-text">
@@ -165,7 +178,7 @@ function generateResult() {
   }
 
   if (score < 4) {
-    $(".quiz-display").append(`<header>
+    $('.quiz-display').append(`<header>
     <h2>${resultsMessage.lossHead}</h2>
   </header>
   <div class="quiz-text">
@@ -178,22 +191,22 @@ function generateResult() {
 }
 
 function hideIntro() {
-  $(".intro-screen").css("display", "none");
+  $('.intro-screen').css('display', 'none');
 }
 
 function clearDisplay() {
-  $(".quiz-display").empty();
+  $('.quiz-display').empty();
 }
 
 function showIntro() {
-  $(".intro-screen").css("display", "flex");
+  $('.intro-screen').css('display', 'flex');
 }
 
 function showScoreboard() {
-  $(".scoreboard").css("display", "block");
+  $('.scoreboard').css('display', 'block');
 }
 function hideScoreboard() {
-  $(".scoreboard").css("display", "none");
+  $('.scoreboard').css('display', 'none');
 }
 
 function resetScore() {
@@ -201,11 +214,11 @@ function resetScore() {
 }
 
 function showQuiz() {
-  $(".quiz-display").css("display", "block");
+  $('.quiz-display').css('display', 'block');
 }
 
 function hideQuiz() {
-  $(".quiz-display").css("display", "none");
+  $('.quiz-display').css('display', 'none');
 }
 
 function resetQuestion() {
@@ -213,7 +226,8 @@ function resetQuestion() {
 }
 
 function restartQuiz() {
-  $(".reset-button").click(function() {
+  $('.reset-button').click(function() {
+    clearError();
     clearDisplay();
     hideQuiz();
     resetScore();

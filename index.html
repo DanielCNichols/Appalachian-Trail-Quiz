@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|IM+Fell+Double+Pica+SC|IM+Fell+English|Noto+Serif+KR|Patrick+Hand+SC|Rye&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>Appalachian Trail Quiz</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link
-    href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|IM+Fell+Double+Pica+SC|IM+Fell+English|Noto+Serif+KR|Patrick+Hand+SC|Rye&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
-  <title>Appalachian Trail Quiz</title>
-</head>
+  <body>
+    <nav class="logo-score">
+      <img
+        class="logo reset-button"
+        src="https://i.etsystatic.com/14565531/r/il/b03619/1229258222/il_794xN.1229258222_a0cx.jpg"
+        alt="Appalachian Trail Logo"
+        aria-label="Click here to restart quiz."
+      />
 
-<body>
-  <nav class="logo-score">
+      <ul aria-live="polite" class="scoreboard">
+        <li id="score">Score:</li>
+        <li id="question">Question: ></li>
+      </ul>
+    </nav>
 
-    <img class="logo reset-button"
-      src="https://i.etsystatic.com/14565531/r/il/b03619/1229258222/il_794xN.1229258222_a0cx.jpg"
-      alt="Appalachian Trail Logo" aria-label="Click here to restart quiz.">
+    <section class="intro-screen play-box" aria-live="polite">
+      <header>
+        <h1>The Appalachian Trail Quiz</h1>
+      </header>
+      <p class="quiz-text">
+        The Appalachian Trail spans roughly 2200 miles, from Georgia all the way
+        to Maine. Thousands attempt to complete the trail each year, but few
+        succeed.
+      </p>
+      <p class="quiz-text">Do you have what it takes to make it to Maine?</p>
+      <button id="quiz-start" class="button">Hit the trail!</button>
+    </section>
 
-    <ul aria-live="polite" class="scoreboard">
-      <li id="score">Score: </li>
-      <li id="question">Question: ></li>
-    </ul>
+    <section class="hide play-box quiz-display" aria-live="polite"></section>
 
-  </nav>
-
-  <section class="intro-screen play-box" aria-live="polite">
-    <header>
-      <h1>The Appalachian Trail Quiz</h1>
-    </header>
-    <p class="quiz-text">The Appalachian Trail spans roughly 2200 miles, from Georgia all the way to Maine.
-      Thousands attempt to complete the trail each year, but few succeed.</p>
-    <p class="quiz-text">Do you have what it takes to make it to Maine?</p>
-    <button id="quiz-start" class="button">Hit the trail!</button>
-  </section>
-
-  <section class="hide play-box quiz-display" aria-live="polite"></section>
-
-
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-  <script src="datastore.js"></script>
-  <script src="index.js"></script>
-
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script src="datastore.js"></script>
+    <script src="index.js"></script>
+  </body>
 </html>
